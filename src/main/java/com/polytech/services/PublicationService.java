@@ -1,14 +1,11 @@
 package com.polytech.services;
-
-import com.polytech.persistence.InMemoryRepository;
-
-import java.util.Properties;
+import com.polytech.persistence.StoryRepository;
 
 public class PublicationService {
 
-    private InMemoryRepository inMemoryRepository = new InMemoryRepository();
+    private StoryRepository storyRepository = new StoryRepository();
 
     public void share(Story story) {
-        inMemoryRepository.save();
+        storyRepository.save(story);
     }
 }

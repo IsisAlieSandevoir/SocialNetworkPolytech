@@ -3,9 +3,14 @@ package com.polytech.web;
 import com.polytech.services.FeedService;
 import com.polytech.services.PublicationService;
 import com.polytech.services.Story;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
+@Controller
 public class FeedController {
 
     private PublicationService publicationService;
@@ -16,11 +21,17 @@ public class FeedController {
         this.feedService = feedService;
     }
 
-    public void post(String story) {
+    @RequestMapping(value="/share", method = RequestMethod.POST)
+    public String post(String story) {
         publicationService.share(new Story(story));
+        return "redirect:/feed";
     }
 
-    public List<Story> feed() {
-        return feedService.findAll();
+    @RequestMapping(value="/feed", method=RequestMethod.GET)
+    //pour afficher
+    public String feed(Model model) {
+        List<Story> stories = feedService.findAll();
+        model.addAttribute("stories", stories);
+        return "feed";
     }
 }

@@ -1,16 +1,16 @@
 <!-- bs3 ctrl alt espace template starter-->
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
     <title>Starter Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
 
     <!-- Custom styles for this template -->
     <style>
@@ -46,7 +46,7 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="index">Home</a></li>
+                <li class="active"><a href="/">Home</a></li>
                 <li class="active"><a href="feed">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -56,14 +56,13 @@
 
 <div class="container">
     <h1>Hi Info4, welcome to Polytech Social Network !</h1>
-   <!-- <a href = "feed"><h2>click here</h2></a>-->
     <div class="starter-template">
-       <!-- <div class="row">
+        <div class="row">
             <form action="/share" method="post" role="form">
                 <legend>Here, share your mind...</legend>
 
                 <div class="form-group">
-                    <textarea class="form-control" placeholder="Create your post..."></textarea>
+                    <textarea class="form-control" name="story" placeholder="Create your post..."></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary pull-right">Share</button>
             </form>
@@ -71,12 +70,12 @@
         <div class="postList">
             <div class="row">
                 <ul class="list-group col-md-12">
-                    <li class="list-group-item">Post 1</li>
-                    <li class="list-group-item">Post 2</li>
-                    <li class="list-group-item">Post 3</li>
+                    <li class="list-group-item" th:each="story :${stories}">
+                        <span th:text="${story.content}"></span>
+                    </li>
                 </ul>
             </div>
-        </div>-->
+        </div>
     </div>
 
 </div><!-- /.container -->

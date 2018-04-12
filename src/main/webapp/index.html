@@ -1,6 +1,6 @@
 <!-- bs3 ctrl alt espace template starter-->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="pnet">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -56,27 +56,10 @@
 
 <div class="container">
     <h1>Hi Info4, welcome to Polytech Social Network !</h1>
-   <!-- <a href = "feed"><h2>click here</h2></a>-->
     <div class="starter-template">
-       <!-- <div class="row">
-            <form action="/share" method="post" role="form">
-                <legend>Here, share your mind...</legend>
+        <div ng-controller = "DemoController as ctrl">
+            result:{{ctrl.content}}</div>
 
-                <div class="form-group">
-                    <textarea class="form-control" placeholder="Create your post..."></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary pull-right">Share</button>
-            </form>
-        </div>
-        <div class="postList">
-            <div class="row">
-                <ul class="list-group col-md-12">
-                    <li class="list-group-item">Post 1</li>
-                    <li class="list-group-item">Post 2</li>
-                    <li class="list-group-item">Post 3</li>
-                </ul>
-            </div>
-        </div>-->
     </div>
 
 </div><!-- /.container -->
@@ -86,5 +69,20 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script type="text/javascript"> angular.module("pnet", []).controller('DemoController', function($http) {
+    alert('ooh');
+    var self = this;
+    self.content = "hi";
+    self.feeds=[];
+    $http.get('/api/feed').then(function(response) {
+        self.feeds = response;
+    }); //apppel asynchrone au serveur
+
+    self.share = function() {
+        console.log("hi", self.content);
+    }
+})
+</script>
 </body>
 </html>
